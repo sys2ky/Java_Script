@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuova Pagina HTML</title>
+</head>
+<body>
+
+  <p id="ld"></p>
+  <p id="nt"></p>
+  <button onclick="calculate()">Calcola</button>
+   ========
+  <button onclick="reloadPage()">Cancella</button>
+
+  <script>
+    let calculator = {
+      imp: 0,
+      int: 0,
+      lordo() {
+        let a = (this.imp * this.int) / 100;
+        return a;
+      },
+
+      netto() {
+        let b = this.lordo() - ((this.lordo() * 26) / 100);
+        return b;
+      },
+
+      read() {
+        this.imp = parseFloat(prompt('Importo lordo - (decimali con virgola)', 0).replace(',', '.'));
+        this.int = parseFloat(prompt('Interessi - (decimali con virgola)', 0).replace(',', '.'));
+      }
+    };
+
+    function calculate() {
+      calculator.read();
+      document.getElementById("ld").innerHTML = "Guadagno Lordo: " + calculator.lordo().toLocaleString('it-IT');
+      document.getElementById("nt").innerHTML = "Guadagno Netto: " + calculator.netto().toLocaleString('it-IT');
+    }
+
+    function reloadPage() {
+      location.reload();
+    }
+  </script>
+</body>
+</html>
